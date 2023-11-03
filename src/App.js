@@ -1,23 +1,23 @@
 import { useState } from "react";
 import Axios from "axios";
 import "./App.css";
+
 import { TiWeatherCloudy } from 'react-icons/ti';
 
 const api = {
-  key: "c3e6a46e79f1c4cec84ee528ca3986dc",
+  key: process.env.REACT_APP_API_KEY,
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
 function App() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState();
-
   const searchPressed = async () => {
     const result = await Axios.get(
       `${api.base}weather?q=${search}&appid=${api.key}`
     );
     setData(result.data);
-    console.log(result);
+    
   };
 
   return (
